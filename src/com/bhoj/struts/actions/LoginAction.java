@@ -9,6 +9,8 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.bhoj.struts.forms.LoginForm;
+import com.bhoj.struts.sevice.LoginService;
+import com.bhoj.struts.sevice.impl.LoginServiceImpl;
 
 /**
  * @author Bhoj Sao
@@ -19,6 +21,8 @@ public class LoginAction extends Action {
 	private final static String SUCCESS = "success";
 	private final static String FAILURE = "failure";
 
+	LoginService loginService = new LoginServiceImpl();
+
 	/**
 	 * This is the action called from the Struts framework.
 	 * 
@@ -26,7 +30,8 @@ public class LoginAction extends Action {
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		LoginForm loginForm = (LoginForm) form;
-		if (loginForm.getUserName().equals(loginForm.getPassword())) {
+		boolean validateEmpolyee = loginService.validateEmpolyee(loginForm.getUserName(), loginForm.getPassword());
+		if (validateEmpolyee) {
 			return mapping.findForward(SUCCESS);
 		} else {
 			return mapping.findForward(FAILURE);

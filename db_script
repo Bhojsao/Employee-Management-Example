@@ -1,0 +1,31 @@
+CREATE TABLE  EMPLOYEE 
+   (	
+		EMPLOYEE_ID NUMBER(10,0) NOT NULL, 
+		USER_NAME VARCHAR2(255 CHAR), 
+		PASSWORD VARCHAR2(255 CHAR),
+		EMPLOYEE_FIRST_NAME VARCHAR2(255 CHAR),
+	  EMPLOYEE_LAST_NAME VARCHAR2(255 CHAR),
+    EMPLOYEE_HIRE_DATE TIMESTAMP (6),
+    GENDER VARCHAR2(255 CHAR),  
+    EMAIL VARCHAR2(255 CHAR), 
+		ADDRESS VARCHAR2(255 CHAR), 
+		CONTACT_NUMBER NUMBER(10,0),
+		PRIMARY KEY (EMPLOYEE_ID) 
+   );
+-------------------------------------------------------------   
+CREATE SEQUENCE EMPLOYEE_ID_SEQ
+  START WITH 1;
+-------------------------------------------------------------  
+CREATE OR REPLACE TRIGGER EMPLOYEE_TIR 
+BEFORE INSERT ON EMPLOYEE 
+FOR EACH ROW
+BEGIN
+  SELECT EMPLOYEE_ID_SEQ.NEXTVAL
+  INTO   :new.EMPLOYEE_ID
+  FROM   dual;
+END;
+------------------------------------------------------------
+INSERT INTO employee (EMPLOYEE_ID, USER_NAME, PASSWORD, EMPLOYEE_FIRST_NAME,EMPLOYEE_LAST_NAME,EMPLOYEE_HIRE_DATE,GENDER,EMAIL,ADDRESS,CONTACT_NUMBER)VALUES  
+                          ( 1, 'Bhoj','Bhoj','BHOJ', 'SAO',to_date('25-10-1985','dd-mm-yyyy'),'MALE', 'BHOJSAO@YMAIL.COM','PUNE',9762162480);
+-------------------------------------------------------------                    
+select * from employee
