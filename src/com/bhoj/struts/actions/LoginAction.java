@@ -17,9 +17,8 @@ import com.bhoj.struts.sevice.impl.LoginServiceImpl;
  *
  */
 public class LoginAction extends Action {
-
-	private final static String SUCCESS = "success";
 	private final static String FAILURE = "failure";
+	private final static String HOME = "home";
 
 	LoginService loginService = new LoginServiceImpl();
 
@@ -32,7 +31,7 @@ public class LoginAction extends Action {
 		LoginForm loginForm = (LoginForm) form;
 		boolean validateEmpolyee = loginService.validateEmpolyee(loginForm.getUserName(), loginForm.getPassword());
 		if (validateEmpolyee) {
-			return mapping.findForward(SUCCESS);
+			return mapping.findForward(HOME);
 		} else {
 			return mapping.findForward(FAILURE);
 		}

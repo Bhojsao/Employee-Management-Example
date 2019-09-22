@@ -6,6 +6,8 @@
 <struts-config>
     <form-beans>
         <form-bean name="LoginForm" type="com.bhoj.struts.forms.LoginForm"/>
+        <form-bean name="EmployeeForm" type="com.bhoj.struts.forms.EmployeeForm" />
+        <form-bean name="EmployeeDetailsForm" type="com.bhoj.struts.forms.EmployeeDetailsForm" />
     </form-beans>
     
     <global-exceptions>
@@ -20,6 +22,18 @@
         <action input="/WEB-INF/jsp/login.jsp" name="LoginForm" path="/Login" scope="session" type="com.bhoj.struts.actions.LoginAction">
             <forward name="success" path="/WEB-INF/jsp/success.jsp" />
             <forward name="failure" path="/WEB-INF/jsp/failure.jsp" />
+            <forward name="home" path="/WEB-INF/jsp/home.jsp" />
+        </action>
+        <action input="/WEB-INF/jsp/employee.jsp" name="EmployeeForm"  parameter="method" path="/employee" scope="session" type="com.bhoj.struts.actions.EmployeeAction">
+            <forward name="employee" path="/WEB-INF/jsp/employee.jsp" />
+            <forward name="home" path="/WEB-INF/jsp/home.jsp" />
+        </action>
+        <action input="/WEB-INF/jsp/employee.jsp" parameter="method" path="/navigate" scope="session" type="com.bhoj.struts.actions.NavigateAction">
+            <forward name="employee" path="/WEB-INF/jsp/employee.jsp" />
+            <forward name="employeeList" path="/WEB-INF/jsp/employeeList.jsp" />
+        </action>
+         <action input="/WEB-INF/jsp/employeeList.jsp" name="EmployeeDetailsForm"  path="/employeeList" scope="session" type="com.bhoj.struts.actions.EmployeeDetailsAction">
+            <forward name="employeeList" path="/WEB-INF/jsp/employeeList.jsp" />
         </action>
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
     </action-mappings>
